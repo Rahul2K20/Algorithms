@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+int partition(int arr[], int lb, int ub, int n)
+{
+    int start, fin;
+    int pivot = arr[lb];
+    start = lb;
+    fin = ub;
+    while(start<fin)
+    {
+        while(arr[start]<=pivot && start < n-1)
+        {
+            start++;
+        }
+        while(arr[fin]>pivot)
+        {
+            fin--;
+        }
+        if(start < fin)
+        {
+            swap(arr[start],arr[fin]);
+        }
+    }
+    swap(arr[lb],arr[fin]);
+    return fin;
+}
+void quicksort(int arr[], int lb, int ub, int n)
+{
+    if(lb<ub)
+    {
+        int loc=partition(arr,lb,ub,n);
+        quicksort(arr,lb,loc-1,n);
+        quicksort(arr,loc+1,ub,n);
+    }
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array: ";
+    cin>>n;
+    int arr[n];
+    cout<<"Input the array: ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int lb =0;
+    int ub =n-1;
+    cout<<"The initial array: ";
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    quicksort(arr,lb,ub,n);
+    cout<<"\nThe sorted array: ";
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}
