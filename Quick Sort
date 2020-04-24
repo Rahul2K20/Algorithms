@@ -3,34 +3,34 @@ using namespace std;
 int partition(int arr[], int lb, int ub, int n)
 {
     int start, fin;
-    int pivot = arr[lb];
-    start = lb;
-    fin = ub;
+    int pivot = arr[lb]; //the first element 
+    start = lb; //0th index
+    fin = ub; //n-1 index 
     while(start<fin)
     {
-        while(arr[start]<=pivot && start < n-1)
+        while(arr[start]<=pivot && start < n-1) // loop till pivot is greater or equivalent, additional condition to prevent out of bounds
         {
-            start++;
+            start++; //increment start if above condition is satisfied 
         }
-        while(arr[fin]>pivot)
+        while(arr[fin]>pivot) //
         {
-            fin--;
+            fin--; //decrement end if above condition is satisfied 
         }
-        if(start < fin)
+        if(start < fin) //swap only when start preceeds end
         {
-            swap(arr[start],arr[fin]);
+            swap(arr[start],arr[fin]); //swap the corresponding elements
         }
     }
-    swap(arr[lb],arr[fin]);
+    swap(arr[lb],arr[fin]); //if end preceeds start, then swap the elements of pivot and end respectively 
     return fin;
 }
 void quicksort(int arr[], int lb, int ub, int n)
 {
-    if(lb<ub)
+    if(lb<ub) //applicable only when this is true
     {
-        int loc=partition(arr,lb,ub,n);
-        quicksort(arr,lb,loc-1,n);
-        quicksort(arr,loc+1,ub,n);
+        int loc=partition(arr,lb,ub,n); //the location of partitioning as returned by line 25
+        quicksort(arr,lb,loc-1,n); //the left sub array that starts from the lower bound till loc-1 
+        quicksort(arr,loc+1,ub,n); //the right sub array that starts from loc+1 till the upper bound 
     }
 }
 int main()
@@ -44,16 +44,16 @@ int main()
     {
         cin>>arr[i];
     }
-    int lb =0;
-    int ub =n-1;
+    int lb =0;   //the first index
+    int ub =n-1; //the last index
     cout<<"The initial array: ";
     for(int i=0;i<n;i++)
     {
         cout<<arr[i]<<" ";
     }
-    quicksort(arr,lb,ub,n);
+    quicksort(arr,lb,ub,n); //call the quicksort function 
     cout<<"\nThe sorted array: ";
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++)  //output the sorted array 
     {
         cout<<arr[i]<<" ";
     }
