@@ -12,7 +12,7 @@ int partition(int arr[], int lb, int ub, int n)
         {
             start++; //increment start if above condition is satisfied 
         }
-        while(arr[fin]>pivot) //
+        while(arr[fin]>pivot)
         {
             fin--; //decrement end if above condition is satisfied 
         }
